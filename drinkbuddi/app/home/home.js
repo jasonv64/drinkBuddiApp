@@ -1,10 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, View } from 'react-native';
 
-export default function Home() {
+export default function Home( {navigation} ) {
   return (
     <View style={styles.container}>
       <Text>Open up home.js 3orking on your app!</Text>
+      <Button
+        title="Sign Up"
+        onPress={() => navigation.navigate('Signup')}
+      />      
+      <Button
+        title="Log On"
+        onPress={() => navigation.navigate('Login')}
+    />
       <StatusBar style="auto" />
     </View>
   );
