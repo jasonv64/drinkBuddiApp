@@ -7,7 +7,8 @@ import Login from './app/login/login';
 
 const Stack = createNativeStackNavigator();
 
-const App = () => {
+export default function App(){
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
@@ -26,6 +27,4 @@ const App = () => {
       </Stack.Navigator>
     </NavigationContainer>
   );
-};
-
-export default App;
+}

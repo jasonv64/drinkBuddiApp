@@ -1,5 +1,6 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
+import {PermissionsAndroid} from 'react-native';
 import { Button, StyleSheet, TextInput, View } from 'react-native';
 
 export default function Signup() {
@@ -9,6 +10,27 @@ export default function Signup() {
   const [password, setPassword] = React.useState('');
   const [checkPassword, setCheckPassword] = React.useState('');
   
+  const GetAllPermissions = async () => {
+    try {
+      if (Platform.OS === "android") {
+        const userResponse = await PermissionsAndroid.requestMultiple([
+          PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION,
+          PermissionsAndroid.PERMISSIONS.SEND_SMS,
+          PermissionsAndroid.PERMISSIONS.READ_EXTERNAL_STORAGE,
+          PermissionsAndroid.PERMISSIONS.ACCESS_MEDIA_LOCATION,
+          PermissionsAndroid.PERMISSIONS.READ_PHONE_NUMBERS,
+          PermissionsAndroid.PERMISSIONS.CAMERA,
+          PermissionsAndroid.PERMISSIONS.POST_NOTIFICATIONS,
+          PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+          PermissionsAndroid.PERMISSIONS.READ_CONTACTS
+        ]);
+        return userResponse;
+      }
+    } catch (err) {
+      Warning(err);
+    }
+    return null;
+  }
 
   return (
     <View style={styles.container}>
@@ -47,7 +69,7 @@ export default function Signup() {
         placeholder="Confirm Password"
         keyboardType="default"
       />
-      <Button color='#000000' title='Create Account' />
+      <Button color='#000000' title='Create Account' onPress={GetAllPermissions}/>
       <StatusBar style="auto" />
     </View>
   );
