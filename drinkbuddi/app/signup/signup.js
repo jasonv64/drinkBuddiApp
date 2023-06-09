@@ -69,14 +69,11 @@ export default function Signup({navigation} ) {
         placeholder="Confirm Password"
         keyboardType="default"
       />
-<<<<<<< Updated upstream
       <Button color='#000000' title='Create Account' onPress={GetAllPermissions}/>
-=======
       <Button
         title="Finish"
         onPress={() => navigation.navigate('Map')}
       />
->>>>>>> Stashed changes
       <StatusBar style="auto" />
     </View>
   );
