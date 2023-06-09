@@ -2,7 +2,7 @@ import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Button, StyleSheet, TextInput, View } from 'react-native';
 
-export default function Signup() {
+export default function Login({navigation}) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   
@@ -22,7 +22,8 @@ export default function Signup() {
         placeholder="Password"
         keyboardType="default"
       />
-        <Button color='#000000' title='Log In' />
+        <Button title="Login"
+        onPress={() => navigation.navigate('Map')} />
       <StatusBar style="auto" />
     </View>
   );

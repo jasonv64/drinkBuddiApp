@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import {PermissionsAndroid} from 'react-native';
 import { Button, StyleSheet, TextInput, View } from 'react-native';
 
-export default function Signup() {
+export default function Signup({navigation} ) {
   const [firstName, setFirstName] = React.useState('');
   const [lastName, setLastName] = React.useState('');
   const [email, setEmail] = React.useState('');
@@ -70,6 +70,10 @@ export default function Signup() {
         keyboardType="default"
       />
       <Button color='#000000' title='Create Account' onPress={GetAllPermissions}/>
+      <Button
+        title="Finish"
+        onPress={() => navigation.navigate('Map')}
+      />
       <StatusBar style="auto" />
     </View>
   );
