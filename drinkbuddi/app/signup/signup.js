@@ -32,6 +32,32 @@ export default function Signup({navigation} ) {
     return null;
   }
 
+  const SignUp = async () => {
+    let userData = {
+      FIRST_NAME: firstName,
+      LAST_NAME: lastName,
+      EMAIL: email,
+      STATE: 'CA',
+      ZIP: 95230,
+      PASSWORD: password
+    }
+
+    await fetch('http://192.168.254.90:8000/user/api/user/signup', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+       },
+       body: JSON.stringify(userData)
+      })
+      .then(response => response.json())
+      .then(result => {
+          console.log('User in DB created');
+          console.log(result);
+      })
+      .catch(error => console.log('error', error));
+  }
+
   return (
     <View style={styles.container}>
       <TextInput
@@ -72,7 +98,7 @@ export default function Signup({navigation} ) {
       <Button color='#000000' title='Create Account' onPress={GetAllPermissions}/>
       <Button
         title="Finish"
-        onPress={() => navigation.navigate('Map')}
+        onPress={() => { SignUp()}}
       />
       <StatusBar style="auto" />
     </View>
