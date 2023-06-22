@@ -3,13 +3,14 @@ import { StatusBar } from 'expo-status-bar';
 import {PermissionsAndroid} from 'react-native';
 import { Button, StyleSheet, TextInput, View } from 'react-native';
 
+
 export default function Signup({navigation} ) {
   const [firstName, setFirstName] = React.useState('');
   const [lastName, setLastName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [checkPassword, setCheckPassword] = React.useState('');
-  
+
   const GetAllPermissions = async () => {
     try {
       if (Platform.OS === "android") {
@@ -54,8 +55,10 @@ export default function Signup({navigation} ) {
       .then(result => {
           console.log('User in DB created');
           console.log(result);
+          navigation.navigate('Map')
       })
       .catch(error => console.log('error', error));
+      
   }
 
   return (

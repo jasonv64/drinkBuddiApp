@@ -8,15 +8,19 @@ export default function Login({navigation}) {
 
   
 
-  const Login = async () => {
+  const Login = async () => {    
     let userData = {
       EMAIL: email,
-      STATE: 'CA',
-      ZIP: 95230,
       PASSWORD: password
     }
 
-    fetch("http://192.168.254.90:8000/user/api/user")
+    fetch("http://192.168.254.90:8000/user/api/user/login",{
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify(userData)
+    })
     .then((resp) => resp.json())
     .then((json) => console.log(json))
     .catch((error) => console.error(error));
