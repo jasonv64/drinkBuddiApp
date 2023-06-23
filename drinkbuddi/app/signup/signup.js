@@ -3,13 +3,14 @@ import { StatusBar } from 'expo-status-bar';
 import {PermissionsAndroid} from 'react-native';
 import { Button, StyleSheet, TextInput, View } from 'react-native';
 
+
 export default function Signup({navigation} ) {
   const [firstName, setFirstName] = React.useState('');
   const [lastName, setLastName] = React.useState('');
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
   const [checkPassword, setCheckPassword] = React.useState('');
-  
+
   const GetAllPermissions = async () => {
     try {
       if (Platform.OS === "android") {
@@ -30,6 +31,34 @@ export default function Signup({navigation} ) {
       Warning(err);
     }
     return null;
+  }
+
+  const SignUp = async () => {
+    let userData = {
+      FIRST_NAME: firstName,
+      LAST_NAME: lastName,
+      EMAIL: email,
+      STATE: 'CA',
+      ZIP: 95230,
+      PASSWORD: password
+    }
+
+    await fetch('http://192.168.254.90:8000/user/api/user/signup', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+       },
+       body: JSON.stringify(userData)
+      })
+      .then(response => response.json())
+      .then(result => {
+          console.log('User in DB created');
+          console.log(result);
+          navigation.navigate('Map')
+      })
+      .catch(error => console.log('error', error));
+      
   }
 
   return (
@@ -72,7 +101,7 @@ export default function Signup({navigation} ) {
       <Button color='#000000' title='Create Account' onPress={GetAllPermissions}/>
       <Button
         title="Finish"
-        onPress={() => navigation.navigate('Map')}
+        onPress={() => { SignUp()}}
       />
       <StatusBar style="auto" />
     </View>

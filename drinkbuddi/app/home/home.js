@@ -4,7 +4,7 @@ import { Button, StyleSheet, Text, View } from 'react-native';
 export default function Home( {navigation} ) {
   return (
     <View style={styles.container}>
-      <Text>Efren testing</Text>
+      <Text>Efren testicng</Text>
       <Button
         title="Sign Up"
         onPress={() => navigation.navigate('Signup')}
