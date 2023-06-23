@@ -1,8 +1,8 @@
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, View, DrawerLayoutAndroid, } from 'react-native';
+import { Button, StyleSheet, Text, View, DrawerLayoutAndroid, TouchableHighlight, } from 'react-native';
 import React, { useRef, useState } from 'react';
-import MapView from "react-native-maps";
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import MapView, { Marker } from 'react-native-maps';
 
 
 
@@ -60,7 +60,45 @@ export default function Map({ navigation }) {
                         latitudeDelta: 0.0922,
                         longitudeDelta: 0.0421,
                     }}
-                />
+                >
+                    <TouchableHighlight>
+                        <Marker
+                            title='Our Brew'
+                            description='This is a Brewery!'
+                            coordinate={{
+                                latitude: 34.070042,
+                                longitude: -117.235483
+                            }}
+                        />
+                    </TouchableHighlight>
+                    <Marker
+                        title='Ritual Brewery'
+                        description='This is also a Brewery!'
+                        coordinate={{
+                            latitude: 34.070564,
+                            longitude: -117.237215
+                        }}
+                    />
+                    <Marker
+                        title='Brew N Chew'
+                        description='This is the last Brewery! :('
+                        coordinate={{
+                            latitude: 34.049716,
+                            longitude: -117.197989
+                        }}
+                    />
+                    <Marker
+                        title='Escape Craft Brewery'
+                        description='This is another Brewery!'
+                        coordinate={{
+                            latitude: 34.061384,
+                            longitude: -117.218675
+                        }}
+                    />
+                </MapView>
+                <View style={styles.info}>
+                    <Text>These are words</Text>
+                </View>
                 <StatusBar style="auto" />
             </View>
         </DrawerLayoutAndroid>
@@ -94,6 +132,13 @@ const styles = StyleSheet.create({
         fontSize: 30,
         fontWeight: 'bold',
         marginLeft: 7,
+    },
+    info: {
+        position: "absolute",
+        width: 300,
+        height: "20%",
+        zIndex: 1,
+        backgroundColor: "blue",
     }
 
 });
