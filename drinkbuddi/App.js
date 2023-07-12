@@ -1,13 +1,8 @@
 import React, { useRef, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import {
-  DrawerLayoutAndroid,
-  View,
-  StyleSheet,
-  Text,
-  Button,
-} from "react-native";
+import { DrawerLayoutAndroid, View, StyleSheet, Text, Button,} from "react-native";
+import Account from "./app/account/account";
 import Home from "./app/home/home";
 import Signup from "./app/signup/signup";
 import Login from "./app/login/login";
@@ -18,6 +13,7 @@ const Stack = createNativeStackNavigator();
 export default function App() {
   const drawer = useRef(null);
   const [drawerPosition, setDrawerPosition] = useState("left");
+
   const changeDrawerPosition = () => {
     if (drawerPosition === "left") {
       setDrawerPosition("right");
@@ -49,6 +45,7 @@ export default function App() {
           <Stack.Screen name="Home" component={Home} />
           <Stack.Screen name="Signup" component={Signup} />
           <Stack.Screen name="Login" component={Login} />
+          <Stack.Screen name="Account" component={Account} />
           <Stack.Screen name="Map" component={Map} />
         </Stack.Navigator>
       </NavigationContainer>

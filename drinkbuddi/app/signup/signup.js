@@ -90,6 +90,7 @@ export default function Signup({navigation} ) {
         value={password}
         placeholder="Password"
         keyboardType="default"
+        secureTextEntry={true}
       />   
       <TextInput
         style={styles.input}
@@ -97,6 +98,7 @@ export default function Signup({navigation} ) {
         value={checkPassword}
         placeholder="Confirm Password"
         keyboardType="default"
+        secureTextEntry={true}
       />
       <Button color='#000000' title='Create Account' onPress={GetAllPermissions}/>
       <Button

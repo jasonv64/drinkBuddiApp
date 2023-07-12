@@ -1,6 +1,7 @@
 import React from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { Button, StyleSheet, TextInput, View } from 'react-native';
+import { IsRequired, IsEmailValid } from '../../userValidation';
 
 export default function Login({navigation}) {
   const [email, setEmail] = React.useState('');
@@ -8,10 +9,14 @@ export default function Login({navigation}) {
 
   
 
-  const Login = async () => {    
+  const Login = async () => { 
     let userData = {
       EMAIL: email,
       PASSWORD: password
+    }
+
+    if(IsEmailValid(userData.EMAIL)) {
+      console.log(IsEmailValid(userData.EMAIL));
     }
 
     fetch("http://192.168.254.90:8000/user/api/user/login",{
@@ -36,6 +41,7 @@ export default function Login({navigation}) {
         value={email}
         placeholder="Email"
         keyboardType="default"
+        secureTextEntry={true}
       />   
       <TextInput
         style={styles.input}
@@ -43,6 +49,7 @@ export default function Login({navigation}) {
         value={password}
         placeholder="Password"
         keyboardType="default"
+        secureTextEntry={true}
       />
       <Button title="Login" onPress={() => {Login();}} />
       <StatusBar style="auto" />

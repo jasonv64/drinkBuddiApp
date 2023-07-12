@@ -12,7 +12,11 @@ export default function Home( {navigation} ) {
       <Button
         title="Log On"
         onPress={() => navigation.navigate('Login')}
-    />
+      />
+      <Button 
+        title="Account"
+        onPress={() => navigation.navigate('Account')}
+      />
       <StatusBar style="auto" />
     </View>
   );
